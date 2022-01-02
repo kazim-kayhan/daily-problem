@@ -1,18 +1,15 @@
 function isPrime(number) {
-  for (let i = 2; i < Math.sqrt(number); i++) {
-    if (number % i === 0) {
-      return false;
-    }
+  number = Math.abs(number);
+  if (number <= 3) return true;
+  if (number % 2 === 0 || number % 3 === 0) return false;
+  let count = 5;
+  while (Math.pow(count, 2) <= number) {
+    if (number % count === 0 || number % (count + 2) === 0) return false;
+    count += 6;
   }
   return true;
 }
 
-// Best Case: number = 1 OR number = 2 => O(1)
-// Average Case: O(n) (Improved: O(sqrt(n)))
-// Worst Case: number = 27,277 => O(n) (Improved: O(sqrt(n)))
-
-console.log(isPrime(1));
-console.log(isPrime(2));
-console.log(isPrime(3));
-console.log(isPrime(9));
+console.log(isPrime(19));
+console.log(isPrime(23));
 console.log(isPrime(27277));
